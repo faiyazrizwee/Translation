@@ -1,7 +1,7 @@
 import textwrap
 
 def translate(seq1):
-    seq1 = seq1.upper()
+    seq1 = seq1.upper() #convert to uppercase
     seq = ''
 
     for nucleotide in seq1:
@@ -15,16 +15,16 @@ def translate(seq1):
             case 'C':
                 seq += 'G'
     
-    seq = seq.replace(" ", "").replace("\n", "").replace("\r", "")
-    index = seq.find("AUG")
-    print(seq)
+    seq = seq.replace(" ", "").replace("\n", "").replace("\r", "") # removing new line and spaces
+    index = seq.find("AUG") # Finding starting codon
     if index == -1:
         return ('Strating codon not found, sequence can\'t be translated.')
 
-    new_seq = seq[index:]
+    new_seq = seq[index:] # The sequence is sliced from the start codon onward.
     list_seq = textwrap.wrap(new_seq, 3)
     trans_seq = []
     
+    # slicing sequence from stop codon
     for codon in list_seq:
         if codon == 'UAA' or codon == 'UAG' or codon == 'UGA':
             break
